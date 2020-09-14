@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
-class LettersScreen extends StatelessWidget {
-  LettersScreen({@required this.getColor});
+class Letter extends StatelessWidget {
+  Letter({@required this.letter, @required this.getColor});
+  final String letter;
   final Function getColor;
 
   @override
