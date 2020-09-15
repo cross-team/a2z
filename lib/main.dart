@@ -10,6 +10,19 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    Map<int, Color> primary = {
+      50: Color.fromRGBO(0, 214, 66, .1),
+      100: Color.fromRGBO(0, 214, 66, .2),
+      200: Color.fromRGBO(0, 214, 66, .3),
+      300: Color.fromRGBO(0, 214, 66, .4),
+      400: Color.fromRGBO(0, 214, 66, .5),
+      500: Color.fromRGBO(0, 214, 66, .6),
+      600: Color.fromRGBO(0, 214, 66, .7),
+      700: Color.fromRGBO(0, 214, 66, .8),
+      800: Color.fromRGBO(0, 214, 66, .9),
+      900: Color.fromRGBO(0, 214, 66, 1),
+    };
+
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
@@ -22,7 +35,7 @@ class MyApp extends StatelessWidget {
         // or simply save your changes to "hot reload" in a Flutter IDE).
         // Notice that the counter didn't reset back to zero; the application
         // is not restarted.
-        primarySwatch: Colors.blue,
+        primarySwatch: MaterialColor(0xFF00D642, primary),
         // This makes the visual density adapt to the platform that you run
         // the app on. For desktop platforms, the controls will be smaller and
         // closer together (more dense) than on mobile platforms.

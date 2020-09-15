@@ -85,13 +85,13 @@ class _HomeScreenState extends State<HomeScreen> {
               title: Text('Add Word'),
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.apps),
+              icon: Icon(Icons.border_all),
               title: Text('Letters'),
             ),
           ],
           currentIndex: _selectedIndex,
           onTap: _onItemTapped,
-          iconSize: 44,
+          iconSize: 30,
         ));
   }
 }

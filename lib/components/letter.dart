@@ -17,6 +17,7 @@ class Letter extends StatelessWidget {
         style: TextStyle(fontWeight: FontWeight.bold, fontSize: 32.0),
       ),
       shape: CircleBorder(),
+      constraints: BoxConstraints.expand(width: 50.0, height: 50.0),
     );
   }
 }

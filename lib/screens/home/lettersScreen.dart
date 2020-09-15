@@ -30,21 +30,73 @@ class LettersScreen extends StatelessWidget {
     'w',
     'x',
     'y',
-    'z'
   ];
 
-  Widget getLetters(List<String> strings) {
-    return new GridView.count(
-        crossAxisCount: 5,
-        padding: const EdgeInsets.all(36),
-        crossAxisSpacing: 10,
-        mainAxisSpacing: 10,
-        children:
-            strings.map((a) => Letter(letter: a, getColor: getColor)).toList());
+  List<Widget> getLetters() {
+    List<Widget> row0 = [];
+    for (var i = 0; i < 5; i++) {
+      row0.add(Letter(letter: alphabet[i], getColor: getColor));
+    }
+    List<Widget> row1 = [];
+    for (var i = 5; i < 10; i++) {
+      row1.add(Letter(letter: alphabet[i], getColor: getColor));
+    }
+    List<Widget> row2 = [];
+    for (var i = 10; i < 15; i++) {
+      row2.add(Letter(letter: alphabet[i], getColor: getColor));
+    }
+    List<Widget> row3 = [];
+    for (var i = 15; i < 20; i++) {
+      row3.add(Letter(letter: alphabet[i], getColor: getColor));
+    }
+    List<Widget> row4 = [];
+    for (var i = 20; i < 25; i++) {
+      row4.add(Letter(letter: alphabet[i], getColor: getColor));
+    }
+    List<Widget> row5 = [Letter(letter: 'z', getColor: getColor)];
+
+    List<Widget> rows = [
+      Row(
+        children: row0,
+        mainAxisSize: MainAxisSize.max,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      ),
+      Row(
+        children: row1,
+        mainAxisSize: MainAxisSize.max,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      ),
+      Row(
+        children: row2,
+        mainAxisSize: MainAxisSize.max,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      ),
+      Row(
+        children: row3,
+        mainAxisSize: MainAxisSize.max,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      ),
+      Row(
+        children: row4,
+        mainAxisSize: MainAxisSize.max,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      ),
+      Row(
+        children: row5,
+        mainAxisSize: MainAxisSize.max,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      )
+    ];
+
+    return rows;
   }
 
   @override
   Widget build(BuildContext context) {
-    return Column(children: <Widget>[Expanded(child: getLetters(alphabet))]);
+    return Column(
+      children: getLetters(),
+      mainAxisAlignment: MainAxisAlignment.start,
+      mainAxisSize: MainAxisSize.min,
+    );
   }
 }
