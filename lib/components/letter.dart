@@ -7,6 +7,16 @@ class Letter extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text('Letters Screen');
+    return RawMaterialButton(
+      onPressed: () {},
+      elevation: 2.0,
+      fillColor: getColor(letter, true),
+      splashColor: getColor(letter),
+      child: Text(
+        letter,
+        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 32.0),
+      ),
+      shape: CircleBorder(),
+    );
   }
 }

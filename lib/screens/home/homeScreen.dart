@@ -10,45 +10,41 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   int _selectedIndex = 2;
 
-  String getLetterColor(String letter, [bool light = false]) {
-    Map letterColors = {
-      'a': 'hsl(0, 100%, 42%)',
-      'b': 'hsl(14, 100%, 42%)',
-      'c': 'hsl(28, 100%, 42%)',
-      'd': 'hsl(41, 100%, 42%)',
-      'e': 'hsl(55, 100%, 42%)',
-      'f': 'hsl(69, 100%, 42%)',
-      'g': 'hsl(83, 100%, 42%)',
-      'h': 'hsl(97, 100%, 42%)',
-      'i': 'hsl(111, 100%, 42%)',
-      'j': 'hsl(125, 100%, 42%)',
-      'k': 'hsl(138, 100%, 42%)',
-      'l': 'hsl(152, 100%, 42%)',
-      'm': 'hsl(166, 100%, 42%)',
-      'n': 'hsl(180, 100%, 42%)',
-      'o': 'hsl(194, 100%, 42%)',
-      'p': 'hsl(208, 100%, 42%)',
-      'q': 'hsl(221, 100%, 42%)',
-      'r': 'hsl(235, 100%, 42%)',
-      's': 'hsl(249, 100%, 42%)',
-      't': 'hsl(263, 100%, 42%)',
-      'u': 'hsl(277, 100%, 42%)',
-      'v': 'hsl(291, 100%, 42%)',
-      'w': 'hsl(305, 100%, 42%)',
-      'x': 'hsl(318, 100%, 42%)',
-      'y': 'hsl(332, 100%, 42%)',
-      'z': 'hsl(346, 100%, 42%)'
+  Color getLetterColor(String letter, [bool light = false]) {
+    Map letterHues = {
+      'a': 0.0,
+      'b': 13.846,
+      'c': 27.692,
+      'd': 41.538,
+      'e': 55.384,
+      'f': 69.23,
+      'g': 83.076,
+      'h': 96.922,
+      'i': 110.768,
+      'j': 124.614,
+      'k': 138.46,
+      'l': 152.306,
+      'm': 166.152,
+      'n': 179.998,
+      'o': 193.844,
+      'p': 207.69,
+      'q': 221.536,
+      'r': 235.382,
+      's': 249.228,
+      't': 263.074,
+      'u': 276.92,
+      'v': 290.766,
+      'w': 304.612,
+      'x': 318.458,
+      'y': 332.304,
+      'z': 346.15,
     };
 
     if (light) {
-      String hslDark = letterColors[letter];
-      String mid = hslDark.replaceAll(new RegExp(r'100%'), '73%');
-      String hslLight = mid.replaceAll(new RegExp(r'42%'), '91%');
-
-      return hslLight;
+      return HSLColor.fromAHSL(1.0, letterHues[letter], 0.73, 0.91).toColor();
     }
 
-    return letterColors[letter];
+    return HSLColor.fromAHSL(1.0, letterHues[letter], 1.0, 0.42).toColor();
   }
 
   void _onItemTapped(int index) {
