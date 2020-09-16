@@ -1,3 +1,4 @@
+import 'package:a2z/components/logo.dart';
 import 'package:flutter/material.dart';
 
 class WordsScreen extends StatelessWidget {
@@ -6,6 +7,10 @@ class WordsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text('Words Screen');
+    return Column(
+      children: [Logo()],
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      mainAxisSize: MainAxisSize.max,
+    );
   }
 }

@@ -8,19 +8,13 @@
       "question": "Does the success of your design assume that a target population will assimilate into the dominant culture? How can you ensure that your design respects the distinct cultures of the people that you are designing for?"
     },
     {
-      "name": "Assimilation",
-      "letter": "a",
-      "definition": "Cultural assimilation is the process whereby a minority group gradually adapts to the customs and attitudes of the prevailing culture and customs.",
-      "question": "Does the success of your design assume that a target population will assimilate into the dominant culture? How can you ensure that your design respects the distinct cultures of the people that you are designing for?"
-    },
-    {
       "name": "Bias",
       "letter": "b",
       "definition": "Bias is disproportionate weight in favor of or against one thing, person, or group compared with another, usually in a way considered to be unfair. Self-correction against implict or unconscious bias takes a lot of conscious work.",
       "question": "Have you acknowledged your biases and tried to counter them by trying to understand the perspectives of others?"
     },
     {
-      "name": "Critical Race theory",
+      "name": "Critical Race Theory",
       "letter": "c",
       "definition": "CRT proposes that white supremacy and racial power are maintained over time, and in particular, that the law may play a role in this process.",
       "question": "How does your design solution change if it were developed for a user of a different race?"
@@ -86,7 +80,7 @@
       "question": "Do you assume that all of your stakeholders speak the dominant language? How could your design improve if you did not have this assumption?"
     },
     {
-      "name": "Margiinalization",
+      "name": "Marginalization",
       "letter": "m",
       "definition": "Marginalization is the process where something or someone is pushed to the edge of a group and is treated as insignificant or peripheral.",
       "question": "How does your design disrupt the marginalization of people? If you work with marginalized groups, how will you ensure that the work is developed from their perspective and not your own?"

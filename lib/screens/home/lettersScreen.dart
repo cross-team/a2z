@@ -1,3 +1,4 @@
+import 'package:a2z/components/logo.dart';
 import 'package:a2z/components/letter.dart';
 import 'package:flutter/material.dart';
 
@@ -56,6 +57,7 @@ class LettersScreen extends StatelessWidget {
     List<Widget> row5 = [Letter(letter: 'z', getColor: getColor)];
 
     List<Widget> rows = [
+      Logo(),
       Row(
         children: row0,
         mainAxisSize: MainAxisSize.max,
@@ -85,6 +87,9 @@ class LettersScreen extends StatelessWidget {
         children: row5,
         mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      ),
+      Container(
+        constraints: BoxConstraints(minHeight: 64),
       )
     ];
 
@@ -95,8 +100,8 @@ class LettersScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: getLetters(),
-      mainAxisAlignment: MainAxisAlignment.start,
-      mainAxisSize: MainAxisSize.min,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      mainAxisSize: MainAxisSize.max,
     );
   }
 }
