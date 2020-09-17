@@ -1,0 +1,175 @@
+class WordsData {
+  final String data = '''{
+  "title": "Critical Alphabet",
+  "words": [
+    {
+      "name": "Assimilation",
+      "letter": "a",
+      "definition": "Cultural assimilation is the process whereby a minority group gradually adapts to the customs and attitudes of the prevailing culture and customs.",
+      "question": "Does the success of your design assume that a target population will assimilate into the dominant culture? How can you ensure that your design respects the distinct cultures of the people that you are designing for?"
+    },
+    {
+      "name": "Bias",
+      "letter": "b",
+      "definition": "Bias is disproportionate weight in favor of or against one thing, person, or group compared with another, usually in a way considered to be unfair. Self-correction against implict or unconscious bias takes a lot of conscious work.",
+      "question": "Have you acknowledged your biases and tried to counter them by trying to understand the perspectives of others?"
+    },
+    {
+      "name": "Critical Race Theory",
+      "letter": "c",
+      "definition": "CRT proposes that white supremacy and racial power are maintained over time, and in particular, that the law may play a role in this process.",
+      "question": "How does your design solution change if it were developed for a user of a different race?"
+    },
+    {
+      "name": "Deficit Thinking",
+      "letter": "d",
+      "definition": "In deficit-based thinking differences are seen as negative and factors that can retard progress. Designers sometimes frame design challenges through a deficit-based lens e.g. when they focus on the problems of a community.",
+      "question": "Do you assume that the people that you’re designing for have a ‘problem’? Do they also think they have a problem? How does your solution change if you focus on strengths instead of deficits?"
+    },
+    {
+      "name": "Emancipatory Research ",
+      "letter": "e",
+      "definition": "Emancipatory research or transformative research is about including the perspective of people who are traditionally excluded from research.",
+      "question": "What is the perspective of marginalized people on the work that you are doing? How does your design work shift power? Who does your work shift power to? How does your work do this?"
+    },
+    {
+      "name": "Feminist Theory",
+      "letter": "f",
+      "definition": "Feminist theory aims to understand the nature of gender inequality. It examines women’s and men’s social roles, experiences, interests, chores, and feminist politics in a variety of fields.",
+      "question": "How would a design concept change if it aimed to reduce gender inequality?"
+    },
+    {
+      "name": "Geography",
+      "letter": "g",
+      "definition": "Geography is an all-encompassing discipline that seeks an understanding of Earth and its human and natural complexities, not merely where objects are, but also how they have changed and come to be. Geography is often defined in terms of two branches: human geography and physical geography.",
+      "question": "How do physical and human geography enhance or limit your design?"
+    },
+    {
+      "name": "Group Think",
+      "letter": "g",
+      "definition": "Groupthink is a psychological phenomenon that occurs within a group of people in which the desire for harmony or conformity in the group results in an irrational or dysfunctional decision-making outcome.",
+      "question": "Does your design concept recognize people’s individual ideas or rely on groupthink?"
+    },
+    {
+      "name": "Heterosexism",
+      "letter": "h",
+      "definition": "Heterosexism is a system of attitudes, bias, and discrimination in favor of opposite-sex sexuality and relationships. It can include the presumption that other people are heterosexual or that opposite-sex attractions and relationships are the only norm and therefore superior.",
+      "question": "How does a design change if people are not presumed to be heterosexual?"
+    },
+    {
+      "name": "Intersectionality",
+      "letter": "i",
+      "definition": "Intersectionality considers that various forms of social stratification, such as class, race, sexual orientation, age, religion, creed, disability and gender, do not exist separately from each other but are woven together.",
+      "question": "What are the multiple forms of oppression that affect the stakeholders in your design challenge?"
+    },
+    {
+      "name": "Social Justice",
+      "letter": "j",
+      "definition": "Social justice is concerned with the just relationship between individuals and their society, often considering how privileges, opportunities, and wealth ought to be distributed among individuals.",
+      "question": "How can you use your design concept to advance a social justice agenda?"
+    },
+    {
+      "name": "Kleptocracy",
+      "letter": "k",
+      "definition": "Kleptocracy is a government with corrupt leaders that use their power to exploit the people and natural resources of their own territory in order to extend their personal wealth and political powers. Typically, this system involves embezzlement of funds at the expense of the wider population.",
+      "question": "The solutions we design for one system may not work for others. Have you considered the contextual nature of the solutions that you develop?"
+    },
+    {
+      "name": "Linguistic Hegemony",
+      "letter": "l",
+      "definition": "The dominance of English can cause prejudices and stereotypes which, in turn, create discrimination against those who do not or can not speak English.",
+      "question": "Do you assume that all of your stakeholders speak the dominant language? How could your design improve if you did not have this assumption?"
+    },
+    {
+      "name": "Marginalization",
+      "letter": "m",
+      "definition": "Marginalization is the process where something or someone is pushed to the edge of a group and is treated as insignificant or peripheral.",
+      "question": "How does your design disrupt the marginalization of people? If you work with marginalized groups, how will you ensure that the work is developed from their perspective and not your own?"
+    },
+    {
+      "name": "Neocolonialism",
+      "letter": "n",
+      "definition": "Neocolonialism is the control of less-developed countries by developed countries through indirect means, including economic, political, cultural, or other pressures.",
+      "question": "How can you ensure that the power dynamics in your cross-cultural design collaborations don’t mimic colonial power structures and hierarchies?"
+    },
+    {
+      "name": "Objectivty",
+      "letter": "o",
+      "definition": "Objectivity is a belief that personal prejudices, preferences of the researcher do not contaminate the collection of or analysis of data. Some researchers, however, believe that objectivity is impossible to achieve and therefore we must acknowledge and declare our biases to produce better research.",
+      "question": "Do you think objectivity is achievable in the design work that you do?"
+    },
+    {
+      "name": "Positionality",
+      "letter": "p",
+      "definition": "Positionality is the practice of a researcher delineating their own position in relation to a research context. A positionality statement can also help designers reveal their own biases and understand who they are and how that affects the solutions that they propose.",
+      "question": "How does your positionality affect how you approach a specific design task or problem?"
+    },
+    {
+      "name": "Privilege",
+      "letter": "p",
+      "definition": "Privilege is a special right, advantage, or immunity granted or available only to a particular person or group. The term is often used to describe social inequality, particularly in regard to race, ethnicity, age, disability, gender identity, sexual orientation, religion, and social class.",
+      "question": "Have you acknowledged your privilege, and how that impacts the ways the design work that you do and the people that you design with and for?"
+    },
+    {
+      "name": "Questioning Mindset",
+      "letter": "q",
+      "definition": "Questions help us to explore, to challenge and to gain deeper insights into societal problems, and this can lead to better problem framing and more innovative solutions.",
+      "question": "Have you tried using questions to identify opportunities, reveal underlying needs, and understand your user’s context?"
+    },
+    {
+      "name": "Resilience",
+      "letter": "r",
+      "definition": "Resilience is the process of adapting well in the face of adversity, trauma, tragedy, threats or significant sources of stress - such as family and relationship problems, serious health problems or workplace and financial stressors. It means \"bouncing back\" from difficult experiences.",
+      "question": "How can you recognize the resilience of your collaborators? Does this shift your perspective from a deficit-based view of a stakeholder’s situation to a strengths-based view?"
+    },
+    {
+      "name": "Self Awareness",
+      "letter": "s",
+      "definition": "Self Awareness is having a clear perception of your personality, including strengths, weaknesses, thoughts, beliefs, motivation, and emotions. Self Awareness allows you to understand how other people perceive you, your attitude and your responses to them in the moment.",
+      "question": "To become more self-aware you have to be self-aware enough to realize how self-aware you are not."
+    },
+    {
+      "name": "Transformative Research",
+      "letter": "t",
+      "definition": "Transformative research is a synonym for emancipatory research. It is a research framework that centers the experiences of marginalized communities, includes analysis of power differentials that have led to marginalization, links research findings to actions intended to mitigate disparities and has an agenda for change.",
+      "question": "How is your work transformative?"
+    },
+    {
+      "name": "Unlearning Oppression",
+      "letter": "u",
+      "definition": "Some everyday practices seem normal and go unquestioned but discriminate against minorities. Many well-intended people are unaware that their actions are oppressive. Oppression affects both the oppressed and the oppressors. To unlearn oppression, we must acknowledge our everyday oppressive practices and engage in critical self-reflection with the aim of becoming actively anti-oppressive.",
+      "question": "What will you do to unlearn oppressive behaviors?"
+    },
+    {
+      "name": "Values",
+      "letter": "v",
+      "definition": "Values reflect a person's sense of right and wrong or what \"ought\" to be. Values influence attitudes and behavior. One’s value system develops from one’s lived experiences, upbringing and culture among other factors. Your design solution or analysis of a problem space may be influenced by your own value system.",
+      "question": "Do you and the people you are design for have the same value system? How does this affect your approach?"
+    },
+    {
+      "name": "Westernization",
+      "letter": "w",
+      "definition": "The West is often assumed to be the center of power, and Western views on development and modernity often are pervasive in design analyses of problems.",
+      "question": "How would your design concept change if you de-westernised it by removing these Western concepts of modernity and development or Eurocentric or American-centric biases?"
+    },
+    {
+      "name": "Xenophobia",
+      "letter": "x",
+      "definition": "Xenophobia is the fear and distrust of that which is perceived to be foreign or strange. Xenophobia can  manifest itself in suspicion of the activities of others, and a desire to eliminate their presence to secure a presumed purity. It is related to a fear of losing national, ethnic or racial identity.",
+      "question": "How does xenophobia (your own, or of other stakeholders in the design problem)  affect the analysis of a problem, or the proposed solutions?"
+    },
+    {
+      "name": "You",
+      "letter": "y",
+      "definition": "You play an active role in change and transformation. You have the agency to question what is happening around you and to take action as a response. Design may be one form of response.",
+      "question": "or or researcher? How can you facilitate collaboration and co-creation across multi-disciplinary and multi-cultural teams?"
+    },
+    {
+      "name": "Zero Sum Thinking",
+      "letter": "z",
+      "definition": "Zero-sum thinking is a binary way of thinking where one person's gain is another's loss. In the zero sum approach there is the idea that things are ‘either/or’ and no understanding that things can be ‘both/and’ instead.",
+      "question": "To counter a zero-sum approach, encourage stakeholders to analyze a situation more deeply and to generate and consider more than two options."
+    }
+  ]
+}''';
+}
