@@ -1,6 +1,8 @@
+import 'package:a2z/bloc/home_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:a2z/screens/addWord/addWordScreen.dart';
 import 'package:a2z/screens/home/homeScreen.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main() {
   runApp(MyApp());
@@ -43,7 +45,8 @@ class MyApp extends StatelessWidget {
         textTheme: TextTheme(bodyText2: TextStyle(color: Color(0xFF333333))),
       ),
       routes: {
-        '/': (context) => HomeScreen(),
+        '/': (context) =>
+            BlocProvider(create: (_) => HomeBloc(), child: HomeScreen()),
         '/add': (context) => AddWordScreen(),
       },
     );

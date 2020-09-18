@@ -41,10 +41,13 @@ class _HomeScreenState extends State<HomeScreen> {
     };
 
     if (light) {
-      return HSLColor.fromAHSL(1.0, letterHues[letter], 0.73, 0.91).toColor();
+      return HSLColor.fromAHSL(
+              1.0, letterHues[letter.toLowerCase()], 0.73, 0.91)
+          .toColor();
     }
 
-    return HSLColor.fromAHSL(1.0, letterHues[letter], 1.0, 0.42).toColor();
+    return HSLColor.fromAHSL(1.0, letterHues[letter.toLowerCase()], 1.0, 0.42)
+        .toColor();
   }
 
   void _onItemTapped(int index) {
