@@ -1,4 +1,5 @@
 import 'package:a2z/components/heart.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 
 class WordCard extends StatefulWidget {
@@ -28,32 +29,36 @@ class _WordCardState extends State<WordCard> {
       child: Container(
           width: 320,
           child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              mainAxisSize: MainAxisSize.max,
-              children: [
-                Row(
-                  children: [
-                    Heart(
-                      isFilled: isFavorite,
-                      color: widget.getColor(widget.word[0]),
-                      onPressed: _toggleHeart,
-                    ),
-                    Container(
-                        padding: EdgeInsets.fromLTRB(12.0, 12.0, 0.0, 12.0),
-                        child: Text(
-                          widget.word.toLowerCase(),
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 40.0),
-                        ))
-                  ],
-                  mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                ),
-                IconButton(
-                  icon: Icon(Icons.more_vert),
-                  onPressed: () {},
-                ),
-              ])),
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              Expanded(
+                  child: Row(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Heart(
+                    isFilled: isFavorite,
+                    color: widget.getColor(widget.word[0]),
+                    onPressed: _toggleHeart,
+                  ),
+                  Expanded(
+                      child: Container(
+                          padding: EdgeInsets.fromLTRB(12.0, 12.0, 0.0, 12.0),
+                          child: AutoSizeText(
+                            widget.word.toLowerCase(),
+                            maxLines: 1,
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 40.0),
+                          )))
+                ],
+              )),
+              IconButton(
+                icon: Icon(Icons.more_vert),
+                onPressed: () {},
+              ),
+            ],
+          )),
     );
   }
 }

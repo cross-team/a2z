@@ -29,7 +29,6 @@ class _WordsScreenState extends State<WordsScreen> {
                 shrinkWrap: true,
                 itemCount: newData.length,
                 itemBuilder: (BuildContext context, int index) {
-                  print(newData[index]['name']);
                   return WordCard(
                       word: newData[index]['name'], getColor: widget.getColor);
                 });
