@@ -1,24 +1,11 @@
 part of 'home_bloc.dart';
 
-@immutable
-abstract class HomeState {
-  final String currentLetter;
-  final String currentWord;
-  HomeState({this.currentLetter, this.currentWord});
-}
+abstract class HomeState {}
 
-class HomeInitial extends HomeState {
-  HomeInitial()
-      : super(
-          currentLetter: '',
-          currentWord: '',
-        );
-}
+class HomeLetters extends HomeState {}
 
-class NewHomeState extends HomeState {
-  NewHomeState.fromOldHomeState(HomeState oldState,
-      {String currentLetter, String currentWord})
-      : super(
-            currentLetter: currentLetter ?? oldState.currentLetter,
-            currentWord: currentWord ?? oldState.currentWord);
+class HomeWords extends HomeState {
+  final String letter;
+  final String word;
+  HomeWords(this.letter, this.word);
 }
