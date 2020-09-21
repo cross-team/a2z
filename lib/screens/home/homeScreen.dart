@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:a2z/bloc/home_bloc.dart';
 import 'package:a2z/screens/home/lettersScreen.dart';
 import 'package:a2z/screens/home/wordsScreen.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -50,51 +52,75 @@ class _HomeScreenState extends State<HomeScreen> {
         .toColor();
   }
 
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
-    dynamic screen;
-    switch (_selectedIndex) {
-      case 0:
-        screen = WordsScreen(
-          getColor: getLetterColor,
-        );
-        break;
-      case 2:
-        screen = LettersScreen(
-          getColor: getLetterColor,
-        );
-        break;
-      default:
-        screen = Text('');
-        break;
-    }
+    return BlocBuilder<HomeBloc, HomeState>(builder: (context, state) {
+      void _onItemTapped(int index) {
+        final HomeBloc homeBloc = BlocProvider.of<HomeBloc>(context);
+        switch (index) {
+          case 0:
+            homeBloc.add(SetView('words', 'a'));
+            break;
+          case 1:
+            homeBloc.add(SetView('letters'));
+            break;
+          default:
+        }
+      }
 
-    return Scaffold(
-        body: Center(child: screen),
-        bottomNavigationBar: BottomNavigationBar(
-          items: const <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
-              icon: Icon(Icons.menu),
-              title: Text('Words'),
+      if (state is HomeWords) {
+        return Scaffold(
+          body: Center(
+            child: WordsScreen(
+              getColor: getLetterColor,
             ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.add_circle),
-              title: Text('Add Word'),
+          ),
+          bottomNavigationBar: BottomNavigationBar(
+            items: const <BottomNavigationBarItem>[
+              BottomNavigationBarItem(
+                icon: Icon(Icons.menu),
+                title: Text('Words'),
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.border_all),
+                title: Text('Letters'),
+              ),
+            ],
+            currentIndex: 0,
+            onTap: _onItemTapped,
+            iconSize: 30,
+          ),
+        );
+      }
+      if (state is HomeLetters) {
+        return Scaffold(
+          body: Center(
+            child: LettersScreen(
+              getColor: getLetterColor,
             ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.border_all),
-              title: Text('Letters'),
-            ),
-          ],
-          currentIndex: _selectedIndex,
-          onTap: _onItemTapped,
-          iconSize: 30,
-        ));
+          ),
+          bottomNavigationBar: BottomNavigationBar(
+            items: const <BottomNavigationBarItem>[
+              BottomNavigationBarItem(
+                icon: Icon(Icons.menu),
+                title: Text('Words'),
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.border_all),
+                title: Text('Letters'),
+              ),
+            ],
+            currentIndex: 1,
+            onTap: _onItemTapped,
+            iconSize: 30,
+          ),
+        );
+      }
+      return Scaffold(
+        body: Center(
+          child: Text('Error!!!'),
+        ),
+      );
+    });
   }
 }
