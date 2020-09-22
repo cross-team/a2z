@@ -47,63 +47,65 @@ class _WordCardState extends State<WordCard> {
       ],
     );
 
-    return BlocBuilder<HomeBloc, HomeState>(builder: (context, state) {
-      if (state is HomeWords && state.word == widget.word.name) {
-        void closeCard(HomeWords currentState) {
-          final HomeBloc homeBloc = BlocProvider.of<HomeBloc>(context);
-          String currentLetter = currentState.letter;
-          homeBloc.add(SetView('words', currentLetter, ''));
-        }
+    Widget cardDefinition = Container(
+      margin: EdgeInsets.fromLTRB(0.0, 8.0, 0.0, 8.0),
+      child: Text(
+        widget.word.definition,
+        style: TextStyle(
+          fontFamily: 'Roboto Slab',
+          fontSize: 12.0,
+        ),
+      ),
+    );
 
-        return RaisedButton(
-          onPressed: () {
-            closeCard(state);
-          },
-          color: Color(0xFFFFFFFF),
-          elevation: 2.0,
-          child: Container(
-              width: 320,
-              child: Column(children: [
-                cardTop,
-                Container(
-                  margin: EdgeInsets.fromLTRB(0.0, 8.0, 0.0, 8.0),
-                  child: Text(
-                    widget.word.definition,
-                    style: TextStyle(
-                      fontFamily: 'Roboto Slab',
-                      fontSize: 12.0,
-                    ),
-                  ),
-                ),
-                Container(
-                    margin: EdgeInsets.fromLTRB(0.0, 8.0, 0.0, 8.0),
-                    child: Text(widget.word.question,
-                        style: TextStyle(
-                            fontFamily: 'Roboto Slab',
-                            fontSize: 14.0,
-                            fontWeight: FontWeight.bold)))
-              ])),
-        );
-      }
+    Widget cardQuestion = Container(
+        margin: EdgeInsets.fromLTRB(0.0, 8.0, 0.0, 8.0),
+        child: Text(widget.word.question,
+            style: TextStyle(
+                fontFamily: 'Roboto Slab',
+                fontSize: 14.0,
+                fontWeight: FontWeight.bold)));
 
-      void openCard(String word) {
-        final HomeBloc homeBloc = BlocProvider.of<HomeBloc>(context);
-        String currentLetter = word[0];
-        homeBloc.add(SetView('words', currentLetter, word));
-      }
+    return Container(
+        margin: EdgeInsets.fromLTRB(16.0, 4.0, 16.0, 4.0),
+        child: BlocBuilder<HomeBloc, HomeState>(builder: (context, state) {
+          if (state is HomeWords && state.word == widget.word.name) {
+            void closeCard(HomeWords currentState) {
+              final HomeBloc homeBloc = BlocProvider.of<HomeBloc>(context);
+              String currentLetter = currentState.letter;
+              homeBloc.add(SetView('words', currentLetter, ''));
+            }
 
-      return RaisedButton(
-        onPressed: () {
-          openCard(widget.word.name);
-        },
-        color: Color(0xFFFFFFFF),
-        elevation: 2.0,
-        child: Container(
-            width: 320,
+            return RaisedButton(
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8.0)),
+              onPressed: () {
+                closeCard(state);
+              },
+              color: Color(0xFFFFFFFF),
+              elevation: 2.0,
+              child: Column(children: [cardTop, cardDefinition, cardQuestion]),
+            );
+          }
+
+          void openCard(String word) {
+            final HomeBloc homeBloc = BlocProvider.of<HomeBloc>(context);
+            String currentLetter = word[0];
+            homeBloc.add(SetView('words', currentLetter, word));
+          }
+
+          return RaisedButton(
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(8.0)),
+            onPressed: () {
+              openCard(widget.word.name);
+            },
+            color: Color(0xFFFFFFFF),
+            elevation: 2.0,
             child: Column(children: [
               cardTop,
-            ])),
-      );
-    });
+            ]),
+          );
+        }));
   }
 }
