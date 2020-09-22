@@ -7,7 +7,8 @@ abstract class HomeEvent {
 class SetView extends HomeEvent {
   final String view;
   final String letter;
-  const SetView(this.view, [this.letter]);
+  final String word;
+  const SetView(this.view, [this.letter, this.word]);
 }
 
 class SelectWord extends HomeEvent {

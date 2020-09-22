@@ -11,6 +11,6 @@ class Word {
 
   Word(this.name, this.letter, this.definition, this.question);
 
-  factory Word.fromJson(Map<String, String> json) => _$WordFromJson(json);
+  factory Word.fromJson(Map<String, dynamic> json) => _$WordFromJson(json);
   Map<String, String> toJson() => _$WordToJson(this);
 }

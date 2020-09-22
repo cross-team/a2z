@@ -45,7 +45,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     if (event is SetView) {
       switch (event.view) {
         case 'words':
-          yield HomeWords(event.letter, '');
+          yield HomeWords(event.letter, event.word);
           break;
         case 'letters':
           yield HomeLetters();
@@ -53,21 +53,20 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         default:
       }
     }
-    if (event is SelectWord) {
-      yield HomeWords(event.word[0], event.word);
-    }
     if (event is NextLetter) {
       if (event.currentLetter == 'z') {
       } else {
         yield HomeWords(
-            alphabet[alphabet.indexOf(event.currentLetter) + 1], '');
+            alphabet[alphabet.indexOf(event.currentLetter.toLowerCase()) + 1],
+            '');
       }
     }
     if (event is PrevLetter) {
       if (event.currentLetter == 'a') {
       } else {
         yield HomeWords(
-            alphabet[alphabet.indexOf(event.currentLetter) - 1], '');
+            alphabet[alphabet.indexOf(event.currentLetter.toLowerCase()) - 1],
+            '');
       }
     }
   }

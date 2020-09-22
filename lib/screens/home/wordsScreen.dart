@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:a2z/bloc/home_bloc.dart';
 import 'package:a2z/components/logo.dart';
 import 'package:a2z/components/wordCard.dart';
+import 'package:a2z/models/word.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 
@@ -20,7 +21,8 @@ class _WordsScreenState extends State<WordsScreen> {
   @override
   Widget build(BuildContext context) {
     FutureBuilder wordCards = FutureBuilder(
-        future: DefaultAssetBundle.of(context).loadString('assets/words.json'),
+        future:
+            DefaultAssetBundle.of(context).loadString('assets/data/words.json'),
         builder: (context, snapshot) {
           List newData = json.decode(snapshot.data.toString());
           var screenData = newData.where(
@@ -34,9 +36,9 @@ class _WordsScreenState extends State<WordsScreen> {
                 itemBuilder: (BuildContext context, int index) {
                   if (screenData.elementAt(index)['name'][0] ==
                       widget.letter.toUpperCase()) {
-                    return WordCard(
-                        word: screenData.elementAt(index)['name'],
-                        getColor: widget.getColor);
+                    Map<String, dynamic> wordMap = screenData.elementAt(index);
+                    Word wordModel = Word.fromJson(screenData.elementAt(index));
+                    return WordCard(word: wordModel, getColor: widget.getColor);
                   }
                 });
           }
@@ -46,10 +48,10 @@ class _WordsScreenState extends State<WordsScreen> {
 
     void swipe(details) {
       final HomeBloc homeBloc = BlocProvider.of<HomeBloc>(context);
-      if (details.primaryVelocity > 0) {
+      if (details.primaryVelocity < 0) {
         homeBloc.add(NextLetter(widget.letter));
       }
-      if (details.primaryVelocity < 0) {
+      if (details.primaryVelocity > 0) {
         homeBloc.add(PrevLetter(widget.letter));
       }
     }
