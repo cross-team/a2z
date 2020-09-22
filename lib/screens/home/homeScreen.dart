@@ -73,6 +73,7 @@ class _HomeScreenState extends State<HomeScreen> {
           body: Center(
             child: WordsScreen(
               getColor: getLetterColor,
+              letter: state.letter,
             ),
           ),
           bottomNavigationBar: BottomNavigationBar(

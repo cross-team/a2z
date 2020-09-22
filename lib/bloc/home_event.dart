@@ -10,11 +10,6 @@ class SetView extends HomeEvent {
   const SetView(this.view, [this.letter]);
 }
 
-class SelectLetter extends HomeEvent {
-  final String letter;
-  const SelectLetter(this.letter);
-}
-
 class SelectWord extends HomeEvent {
   final String word;
   const SelectWord(this.word);

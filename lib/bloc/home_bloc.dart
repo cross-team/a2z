@@ -53,9 +53,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         default:
       }
     }
-    if (event is SelectLetter) {
-      yield HomeWords(event.letter, '');
-    }
     if (event is SelectWord) {
       yield HomeWords(event.word[0], event.word);
     }
