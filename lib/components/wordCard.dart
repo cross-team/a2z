@@ -15,14 +15,6 @@ class WordCard extends StatefulWidget {
 }
 
 class _WordCardState extends State<WordCard> {
-  bool isFavorite = false;
-
-  void _toggleHeart() {
-    setState(() {
-      isFavorite = !isFavorite;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     print('building card');
@@ -37,15 +29,6 @@ class _WordCardState extends State<WordCard> {
           maxLines: 1,
           style: TextStyle(fontWeight: FontWeight.bold, fontSize: 40.0),
         )),
-        Heart(
-          isFilled: isFavorite,
-          color: widget.getColor(widget.word.name[0]),
-          onPressed: _toggleHeart,
-        ),
-        IconButton(
-          icon: Icon(Icons.more_vert),
-          onPressed: () {},
-        ),
       ],
     );
 
@@ -64,6 +47,11 @@ class _WordCardState extends State<WordCard> {
     //The content for the word's question
     Widget cardQuestion = Container(
         margin: EdgeInsets.fromLTRB(0.0, 8.0, 0.0, 8.0),
+        padding: EdgeInsets.all(10.0),
+        decoration: BoxDecoration(
+          color: widget.getColor(widget.word.name[0], true),
+          borderRadius: BorderRadius.circular(8),
+        ),
         child: Text(widget.word.question,
             style: TextStyle(
                 fontFamily: 'Roboto Slab',
@@ -82,14 +70,19 @@ class _WordCardState extends State<WordCard> {
 
               return RaisedButton(
                 shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8.0)),
+                    borderRadius: BorderRadius.circular(8.0),
+                    side: BorderSide(
+                        color: widget.getColor(widget.word.name[0]),
+                        width: 4.0)),
                 onPressed: () {
                   closeCard(state.letter);
                 },
                 color: Color(0xFFFFFFFF),
                 elevation: 2.0,
-                child:
-                    Column(children: [cardTop, cardDefinition, cardQuestion]),
+                child: Container(
+                    padding: EdgeInsets.all(8.0),
+                    child: Column(
+                        children: [cardTop, cardDefinition, cardQuestion])),
               );
             }
 
@@ -106,7 +99,8 @@ class _WordCardState extends State<WordCard> {
               },
               color: Color(0xFFFFFFFF),
               elevation: 2.0,
-              child: Column(children: [cardTop]),
+              child: Container(
+                  height: 64.0, padding: EdgeInsets.all(8.0), child: cardTop),
             );
           }
         }));
