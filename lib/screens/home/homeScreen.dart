@@ -12,7 +12,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   int _selectedIndex = 2;
 
-  Color getLetterColor(String letter, [bool light = false]) {
+  Color getLetterColor(String letter, [bool dark = false]) {
     Map letterHues = {
       'a': 0.0,
       'b': 13.846,
@@ -42,13 +42,12 @@ class _HomeScreenState extends State<HomeScreen> {
       'z': 346.15,
     };
 
-    if (light) {
-      return HSLColor.fromAHSL(
-              1.0, letterHues[letter.toLowerCase()], 0.73, 0.91)
+    if (dark) {
+      return HSLColor.fromAHSL(1.0, letterHues[letter.toLowerCase()], 0.73, 0.3)
           .toColor();
     }
 
-    return HSLColor.fromAHSL(1.0, letterHues[letter.toLowerCase()], 1.0, 0.42)
+    return HSLColor.fromAHSL(1.0, letterHues[letter.toLowerCase()], 1.0, 0.325)
         .toColor();
   }
 
@@ -83,7 +82,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 title: Text('Words'),
               ),
               BottomNavigationBarItem(
-                icon: Icon(Icons.border_all),
+                icon: Icon(Icons.dialpad),
                 title: Text('Letters'),
               ),
             ],
@@ -107,7 +106,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 title: Text('Words'),
               ),
               BottomNavigationBarItem(
-                icon: Icon(Icons.border_all),
+                icon: Icon(Icons.dialpad),
                 title: Text('Letters'),
               ),
             ],

@@ -21,10 +21,13 @@ class Letter extends StatelessWidget {
       splashColor: getColor(letter),
       child: Text(
         letter,
-        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 32.0),
+        style: TextStyle(
+            color: Colors.white, fontWeight: FontWeight.bold, fontSize: 32.0),
       ),
-      shape: CircleBorder(),
-      constraints: BoxConstraints.expand(width: 50.0, height: 50.0),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(4.0),
+      ),
+      constraints: BoxConstraints.expand(width: 60.0, height: 60.0),
     );
   }
 }

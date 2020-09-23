@@ -24,11 +24,13 @@ class _WordCardState extends State<WordCard> {
       mainAxisSize: MainAxisSize.max,
       children: [
         Expanded(
-            child: AutoSizeText(
-          widget.word.name.toLowerCase(),
-          maxLines: 1,
-          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 40.0),
-        )),
+            child: AutoSizeText(widget.word.name.toLowerCase(),
+                style: TextStyle(
+                    color: Colors.white,
+                    fontFamily: 'Roboto Slab',
+                    fontSize: 40.0,
+                    letterSpacing: -1.5),
+                maxLines: 3)),
       ],
     );
 
@@ -38,8 +40,9 @@ class _WordCardState extends State<WordCard> {
       child: Text(
         widget.word.definition,
         style: TextStyle(
+          color: Colors.white,
           fontFamily: 'Roboto Slab',
-          fontSize: 12.0,
+          fontSize: 16.0,
         ),
       ),
     );
@@ -54,8 +57,9 @@ class _WordCardState extends State<WordCard> {
         ),
         child: Text(widget.word.question,
             style: TextStyle(
+                color: Colors.white,
                 fontFamily: 'Roboto Slab',
-                fontSize: 14.0,
+                fontSize: 16.0,
                 fontWeight: FontWeight.bold)));
 
     return Container(
@@ -77,10 +81,10 @@ class _WordCardState extends State<WordCard> {
                 onPressed: () {
                   closeCard(state.letter);
                 },
-                color: Color(0xFFFFFFFF),
+                color: widget.getColor(widget.word.name[0]),
                 elevation: 2.0,
                 child: Container(
-                    padding: EdgeInsets.all(8.0),
+                    padding: EdgeInsets.fromLTRB(0.0, 6.0, 0.0, 6.0),
                     child: Column(
                         children: [cardTop, cardDefinition, cardQuestion])),
               );
@@ -97,7 +101,7 @@ class _WordCardState extends State<WordCard> {
               onPressed: () {
                 openCard(state.letter, widget.word.name);
               },
-              color: Color(0xFFFFFFFF),
+              color: widget.getColor(widget.word.name[0]),
               elevation: 2.0,
               child: Container(
                   height: 64.0, padding: EdgeInsets.all(8.0), child: cardTop),

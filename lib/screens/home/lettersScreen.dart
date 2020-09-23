@@ -89,7 +89,7 @@ class LettersScreen extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       ),
       Container(
-        constraints: BoxConstraints(minHeight: 64),
+        constraints: BoxConstraints(minHeight: 24),
       )
     ];
 
@@ -98,10 +98,12 @@ class LettersScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: getLetters(),
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      mainAxisSize: MainAxisSize.max,
-    );
+    return Container(
+        padding: EdgeInsets.all(16.0),
+        child: Column(
+          children: getLetters(),
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisSize: MainAxisSize.max,
+        ));
   }
 }
