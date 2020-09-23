@@ -25,22 +25,37 @@ class _WordsScreenState extends State<WordsScreen> {
             DefaultAssetBundle.of(context).loadString('assets/data/words.json'),
         builder: (context, snapshot) {
           List newData = json.decode(snapshot.data.toString());
-          var screenData = newData.where(
-              (element) => element['name'][0] == widget.letter.toUpperCase());
 
-          if (screenData != null) {
-            return ListView.builder(
-                scrollDirection: Axis.vertical,
-                shrinkWrap: true,
-                itemCount: screenData.length,
-                itemBuilder: (BuildContext context, int index) {
-                  if (screenData.elementAt(index)['name'][0] ==
-                      widget.letter.toUpperCase()) {
-                    Map<String, dynamic> wordMap = screenData.elementAt(index);
-                    Word wordModel = Word.fromJson(screenData.elementAt(index));
+          if (widget.letter == 'all') {
+            if (newData != null) {
+              return ListView.builder(
+                  scrollDirection: Axis.vertical,
+                  shrinkWrap: true,
+                  itemCount: newData.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    Word wordModel = Word.fromJson(newData[index]);
                     return WordCard(word: wordModel, getColor: widget.getColor);
-                  }
-                });
+                  });
+            }
+          } else {
+            var screenData = newData.where(
+                (element) => element['name'][0] == widget.letter.toUpperCase());
+
+            if (screenData != null) {
+              return ListView.builder(
+                  scrollDirection: Axis.vertical,
+                  shrinkWrap: true,
+                  itemCount: screenData.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    if (screenData.elementAt(index)['name'][0] ==
+                        widget.letter.toUpperCase()) {
+                      Word wordModel =
+                          Word.fromJson(screenData.elementAt(index));
+                      return WordCard(
+                          word: wordModel, getColor: widget.getColor);
+                    }
+                  });
+            }
           }
 
           return Text('Loading');

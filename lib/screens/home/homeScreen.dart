@@ -59,7 +59,7 @@ class _HomeScreenState extends State<HomeScreen> {
         final HomeBloc homeBloc = BlocProvider.of<HomeBloc>(context);
         switch (index) {
           case 0:
-            homeBloc.add(SetView('words', 'a', ''));
+            homeBloc.add(SetView('words', 'all', ''));
             break;
           case 1:
             homeBloc.add(SetView('letters'));

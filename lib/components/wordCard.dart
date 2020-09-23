@@ -25,6 +25,8 @@ class _WordCardState extends State<WordCard> {
 
   @override
   Widget build(BuildContext context) {
+    print('building card');
+    // The top of the card, AKA the closed version of the card
     Widget cardTop = Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       mainAxisSize: MainAxisSize.max,
@@ -47,6 +49,7 @@ class _WordCardState extends State<WordCard> {
       ],
     );
 
+    //The content for the word's definition
     Widget cardDefinition = Container(
       margin: EdgeInsets.fromLTRB(0.0, 8.0, 0.0, 8.0),
       child: Text(
@@ -58,6 +61,7 @@ class _WordCardState extends State<WordCard> {
       ),
     );
 
+    //The content for the word's question
     Widget cardQuestion = Container(
         margin: EdgeInsets.fromLTRB(0.0, 8.0, 0.0, 8.0),
         child: Text(widget.word.question,
@@ -69,43 +73,42 @@ class _WordCardState extends State<WordCard> {
     return Container(
         margin: EdgeInsets.fromLTRB(16.0, 4.0, 16.0, 4.0),
         child: BlocBuilder<HomeBloc, HomeState>(builder: (context, state) {
-          if (state is HomeWords && state.word == widget.word.name) {
-            void closeCard(HomeWords currentState) {
+          if (state is HomeWords) {
+            if (state.word == widget.word.name) {
+              void closeCard(String currentLetter) {
+                final HomeBloc homeBloc = BlocProvider.of<HomeBloc>(context);
+                homeBloc.add(SetView('words', currentLetter, ''));
+              }
+
+              return RaisedButton(
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8.0)),
+                onPressed: () {
+                  closeCard(state.letter);
+                },
+                color: Color(0xFFFFFFFF),
+                elevation: 2.0,
+                child:
+                    Column(children: [cardTop, cardDefinition, cardQuestion]),
+              );
+            }
+
+            void openCard(String currentLetter, String word) {
               final HomeBloc homeBloc = BlocProvider.of<HomeBloc>(context);
-              String currentLetter = currentState.letter;
-              homeBloc.add(SetView('words', currentLetter, ''));
+              homeBloc.add(SetView('words', currentLetter, word));
             }
 
             return RaisedButton(
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8.0)),
               onPressed: () {
-                closeCard(state);
+                openCard(state.letter, widget.word.name);
               },
               color: Color(0xFFFFFFFF),
               elevation: 2.0,
-              child: Column(children: [cardTop, cardDefinition, cardQuestion]),
+              child: Column(children: [cardTop]),
             );
           }
-
-          void openCard(String word) {
-            final HomeBloc homeBloc = BlocProvider.of<HomeBloc>(context);
-            String currentLetter = word[0];
-            homeBloc.add(SetView('words', currentLetter, word));
-          }
-
-          return RaisedButton(
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(8.0)),
-            onPressed: () {
-              openCard(widget.word.name);
-            },
-            color: Color(0xFFFFFFFF),
-            elevation: 2.0,
-            child: Column(children: [
-              cardTop,
-            ]),
-          );
         }));
   }
 }
