@@ -61,20 +61,36 @@ class _WordsScreenState extends State<WordsScreen> {
           return Text('Loading');
         });
 
+    Widget fadeContainer = Expanded(
+      child: ShaderMask(
+        shaderCallback: (Rect bounds) {
+          return LinearGradient(
+                  colors: <Color>[Colors.transparent, Colors.white],
+                  begin: Alignment.topCenter,
+                  end: Alignment(0.0, -0.9))
+              .createShader(bounds);
+        },
+        child: wordCards,
+        blendMode: BlendMode.dstIn,
+      ),
+    );
+
     void swipe(details) {
-      final HomeBloc homeBloc = BlocProvider.of<HomeBloc>(context);
-      if (details.primaryVelocity < 0) {
-        homeBloc.add(NextLetter(widget.letter));
-      }
-      if (details.primaryVelocity > 0) {
-        homeBloc.add(PrevLetter(widget.letter));
+      if (widget.letter != 'all') {
+        final HomeBloc homeBloc = BlocProvider.of<HomeBloc>(context);
+        if (details.primaryVelocity < 0) {
+          homeBloc.add(NextLetter(widget.letter));
+        }
+        if (details.primaryVelocity > 0) {
+          homeBloc.add(PrevLetter(widget.letter));
+        }
       }
     }
 
     return GestureDetector(
         onHorizontalDragEnd: swipe,
         child: Column(
-          children: [Logo(), Expanded(child: wordCards)],
+          children: [Logo(), fadeContainer],
           mainAxisAlignment: MainAxisAlignment.start,
           mainAxisSize: MainAxisSize.max,
         ));
