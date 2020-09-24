@@ -1,5 +1,5 @@
 import 'package:a2z/bloc/home_bloc.dart';
-import 'package:a2z/components/heart.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:a2z/models/word.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +17,15 @@ class WordCard extends StatefulWidget {
 class _WordCardState extends State<WordCard> {
   @override
   Widget build(BuildContext context) {
-    print('building card');
+    _launchURL() async {
+      const url = 'https://criticalalphabet.com/suggest/';
+      if (await canLaunch(url)) {
+        await launch(url);
+      } else {
+        throw 'Could not launch $url';
+      }
+    }
+
     // The top of the card, AKA the closed version of the card
     Widget cardTop = Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -65,6 +73,34 @@ class _WordCardState extends State<WordCard> {
                 fontSize: 16.0,
                 fontWeight: FontWeight.bold)));
 
+    // Suggest Word Button
+    if (widget.word.name == 'add') {
+      return Container(
+          margin: EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 64.0),
+          height: 64.0,
+          child: RaisedButton(
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(8.0)),
+            onPressed: _launchURL,
+            color: Colors.white,
+            elevation: 8.0,
+            child: Container(
+                padding: EdgeInsets.fromLTRB(0.0, 8.0, 0.0, 8.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Expanded(
+                        child: AutoSizeText(
+                      'Suggest a Word',
+                      style: TextStyle(fontSize: 32.0, letterSpacing: -1.5),
+                      textAlign: TextAlign.center,
+                    )),
+                  ],
+                )),
+          ));
+    }
+
     return Container(
         margin: EdgeInsets.fromLTRB(16.0, 4.0, 16.0, 4.0),
         child: BlocBuilder<HomeBloc, HomeState>(builder: (context, state) {
@@ -85,7 +121,7 @@ class _WordCardState extends State<WordCard> {
                 color: widget.getColor(widget.word.name[0]),
                 elevation: 2.0,
                 child: Container(
-                    padding: EdgeInsets.all(8.0),
+                    padding: EdgeInsets.fromLTRB(0.0, 8.0, 0.0, 8.0),
                     child: Column(
                         children: [cardTop, cardDefinition, cardQuestion])),
               );
@@ -104,7 +140,9 @@ class _WordCardState extends State<WordCard> {
               },
               color: widget.getColor(widget.word.name[0]),
               elevation: 2.0,
-              child: Container(padding: EdgeInsets.all(8.0), child: cardTop),
+              child: Container(
+                  padding: EdgeInsets.fromLTRB(0.0, 8.0, 0.0, 8.0),
+                  child: cardTop),
             );
           }
         }));

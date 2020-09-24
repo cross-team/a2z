@@ -31,8 +31,13 @@ class _WordsScreenState extends State<WordsScreen> {
               return ListView.builder(
                   scrollDirection: Axis.vertical,
                   shrinkWrap: true,
-                  itemCount: newData.length,
+                  itemCount: newData.length + 1,
                   itemBuilder: (BuildContext context, int index) {
+                    if (newData.length == index) {
+                      Word addWord = Word('add', '', '', '');
+                      return WordCard(word: addWord, getColor: widget.getColor);
+                    }
+
                     Word wordModel = Word.fromJson(newData[index]);
                     return WordCard(word: wordModel, getColor: widget.getColor);
                   });
@@ -45,8 +50,13 @@ class _WordsScreenState extends State<WordsScreen> {
               return ListView.builder(
                   scrollDirection: Axis.vertical,
                   shrinkWrap: true,
-                  itemCount: screenData.length,
+                  itemCount: screenData.length + 1,
                   itemBuilder: (BuildContext context, int index) {
+                    if (screenData.length == index) {
+                      Word addWord = Word('add', '', '', '');
+                      return WordCard(word: addWord, getColor: widget.getColor);
+                    }
+
                     if (screenData.elementAt(index)['name'][0] ==
                         widget.letter.toUpperCase()) {
                       Word wordModel =
@@ -67,7 +77,7 @@ class _WordsScreenState extends State<WordsScreen> {
           return LinearGradient(
                   colors: <Color>[Colors.transparent, Colors.white],
                   begin: Alignment.topCenter,
-                  end: Alignment(0.0, -0.9))
+                  end: Alignment(0.0, -0.8))
               .createShader(bounds);
         },
         child: wordCards,

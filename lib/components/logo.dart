@@ -7,7 +7,7 @@ class Logo extends StatelessWidget {
     return Container(
       child: SvgPicture.asset('assets/images/brand.svg'),
       // constraints: BoxConstraints(maxWidth: 200.0),
-      padding: EdgeInsets.fromLTRB(100.0, 48.0, 100.0, 24.0),
+      padding: EdgeInsets.fromLTRB(100.0, 48.0, 100.0, 0.0),
     );
   }
 }
