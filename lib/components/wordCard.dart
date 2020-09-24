@@ -24,13 +24,16 @@ class _WordCardState extends State<WordCard> {
       mainAxisSize: MainAxisSize.max,
       children: [
         Expanded(
-            child: AutoSizeText(widget.word.name.toLowerCase(),
-                style: TextStyle(
-                    color: Colors.white,
-                    fontFamily: 'Roboto Slab',
-                    fontSize: 40.0,
-                    letterSpacing: -1.5),
-                maxLines: 3)),
+            child: AutoSizeText(
+          widget.word.name.toLowerCase(),
+          style: TextStyle(
+              color: Colors.white,
+              fontFamily: 'Roboto Slab',
+              fontSize: 40.0,
+              letterSpacing: -1.5),
+          maxLines: 3,
+          minFontSize: 40.0,
+        )),
       ],
     );
 
@@ -74,17 +77,15 @@ class _WordCardState extends State<WordCard> {
 
               return RaisedButton(
                 shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8.0),
-                    side: BorderSide(
-                        color: widget.getColor(widget.word.name[0]),
-                        width: 4.0)),
+                  borderRadius: BorderRadius.circular(8.0),
+                ),
                 onPressed: () {
                   closeCard(state.letter);
                 },
                 color: widget.getColor(widget.word.name[0]),
                 elevation: 2.0,
                 child: Container(
-                    padding: EdgeInsets.fromLTRB(0.0, 6.0, 0.0, 6.0),
+                    padding: EdgeInsets.all(8.0),
                     child: Column(
                         children: [cardTop, cardDefinition, cardQuestion])),
               );
@@ -103,8 +104,7 @@ class _WordCardState extends State<WordCard> {
               },
               color: widget.getColor(widget.word.name[0]),
               elevation: 2.0,
-              child: Container(
-                  height: 64.0, padding: EdgeInsets.all(8.0), child: cardTop),
+              child: Container(padding: EdgeInsets.all(8.0), child: cardTop),
             );
           }
         }));
