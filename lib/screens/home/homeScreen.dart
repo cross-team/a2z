@@ -3,6 +3,7 @@ import 'package:a2z/bloc/home_bloc.dart';
 import 'package:a2z/screens/home/lettersScreen.dart';
 import 'package:a2z/screens/home/wordsScreen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -51,6 +52,15 @@ class _HomeScreenState extends State<HomeScreen> {
         .toColor();
   }
 
+  _launchURL() async {
+    const url = 'https://criticalalphabet.com/suggest/';
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<HomeBloc, HomeState>(builder: (context, state) {
@@ -61,6 +71,9 @@ class _HomeScreenState extends State<HomeScreen> {
             homeBloc.add(SetView('words', 'all', ''));
             break;
           case 1:
+            _launchURL();
+            break;
+          case 2:
             homeBloc.add(SetView('letters'));
             break;
           default:
@@ -82,6 +95,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 title: Text('Words'),
               ),
               BottomNavigationBarItem(
+                icon: Icon(Icons.add_circle),
+                title: Text('Suggest a Word'),
+              ),
+              BottomNavigationBarItem(
                 icon: Icon(Icons.dialpad),
                 title: Text('Letters'),
               ),
@@ -89,6 +106,8 @@ class _HomeScreenState extends State<HomeScreen> {
             currentIndex: 0,
             onTap: _onItemTapped,
             iconSize: 30,
+            showSelectedLabels: false,
+            showUnselectedLabels: false,
           ),
         );
       }
@@ -106,13 +125,19 @@ class _HomeScreenState extends State<HomeScreen> {
                 title: Text('Words'),
               ),
               BottomNavigationBarItem(
+                icon: Icon(Icons.add_circle),
+                title: Text('Suggest a Word'),
+              ),
+              BottomNavigationBarItem(
                 icon: Icon(Icons.dialpad),
                 title: Text('Letters'),
               ),
             ],
-            currentIndex: 1,
+            currentIndex: 2,
             onTap: _onItemTapped,
             iconSize: 30,
+            showSelectedLabels: false,
+            showUnselectedLabels: false,
           ),
         );
       }
