@@ -59,6 +59,39 @@ class _WordCardState extends State<WordCard> {
     );
 
     //The content for the word's question
+    List<Widget> getQuestions(String questions) {
+      if (questions.indexOf('?') == questions.lastIndexOf('?')) {
+        return [
+          Text(questions,
+              style: TextStyle(
+                  color: Colors.white,
+                  fontFamily: 'Roboto Slab',
+                  fontSize: 16.0,
+                  fontWeight: FontWeight.bold))
+        ];
+      }
+      List<String> splitQuestions = questions.split('? ');
+      List<Widget> questionList = [];
+      splitQuestions.forEach((element) {
+        String text = element;
+        if (!text.contains('?')) {
+          text = element + '?';
+        }
+        questionList.add(Text(text,
+            style: TextStyle(
+                color: Colors.white,
+                fontFamily: 'Roboto Slab',
+                fontSize: 16.0,
+                fontWeight: FontWeight.bold)));
+        if (splitQuestions[splitQuestions.length - 1] != element) {
+          questionList.add(Container(
+            height: 16.0,
+          ));
+        }
+      });
+      return questionList;
+    }
+
     Widget cardQuestion = Container(
         margin: EdgeInsets.fromLTRB(0.0, 8.0, 0.0, 8.0),
         padding: EdgeInsets.all(10.0),
@@ -66,12 +99,9 @@ class _WordCardState extends State<WordCard> {
           color: widget.getColor(widget.word.name[0], true),
           borderRadius: BorderRadius.circular(8),
         ),
-        child: Text(widget.word.question,
-            style: TextStyle(
-                color: Colors.white,
-                fontFamily: 'Roboto Slab',
-                fontSize: 16.0,
-                fontWeight: FontWeight.bold)));
+        child: Column(
+          children: getQuestions(widget.word.question),
+        ));
 
     // Suggest Word Button
     if (widget.word.name == 'add') {
@@ -92,8 +122,11 @@ class _WordCardState extends State<WordCard> {
                   children: [
                     Expanded(
                         child: AutoSizeText(
-                      'Suggest a Word',
-                      style: TextStyle(fontSize: 32.0, letterSpacing: -1.5),
+                      'SUGGEST A WORD',
+                      style: TextStyle(
+                          fontSize: 18.0,
+                          letterSpacing: -1.25,
+                          fontWeight: FontWeight.bold),
                       textAlign: TextAlign.center,
                     )),
                   ],
