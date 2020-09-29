@@ -77,6 +77,9 @@ class _WordCardState extends State<WordCard> {
         if (!text.contains('?')) {
           text = element + '?';
         }
+        if (text[0] == ' ') {
+          text = text.substring(1);
+        }
         questionList.add(Text(text,
             style: TextStyle(
                 color: Colors.white,
@@ -93,6 +96,7 @@ class _WordCardState extends State<WordCard> {
     }
 
     Widget cardQuestion = Container(
+        width: 360.0,
         margin: EdgeInsets.fromLTRB(0.0, 8.0, 0.0, 8.0),
         padding: EdgeInsets.all(10.0),
         decoration: BoxDecoration(
@@ -100,6 +104,7 @@ class _WordCardState extends State<WordCard> {
           borderRadius: BorderRadius.circular(8),
         ),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: getQuestions(widget.word.question),
         ));
 
