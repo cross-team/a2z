@@ -110,79 +110,88 @@ class _WordCardState extends State<WordCard> {
 
     // Suggest Word Button
     if (widget.word.name == 'add') {
-      return Container(
-          margin: EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 64.0),
-          height: 64.0,
-          child: RaisedButton(
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(8.0)),
-            onPressed: _launchURL,
-            color: Colors.white,
-            elevation: 8.0,
-            child: Container(
-                padding: EdgeInsets.fromLTRB(0.0, 8.0, 0.0, 8.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Expanded(
-                        child: AutoSizeText(
-                      'SUGGEST A WORD',
-                      style: TextStyle(
-                          fontSize: 18.0,
-                          letterSpacing: -1.25,
-                          fontWeight: FontWeight.bold),
-                      textAlign: TextAlign.center,
-                    )),
-                  ],
-                )),
-          ));
-    }
-
-    return Container(
-        margin: EdgeInsets.fromLTRB(16.0, 4.0, 16.0, 4.0),
-        child: BlocBuilder<HomeBloc, HomeState>(builder: (context, state) {
-          if (state is HomeWords) {
-            if (state.word == widget.word.name) {
-              void closeCard(String currentLetter) {
-                final HomeBloc homeBloc = BlocProvider.of<HomeBloc>(context);
-                homeBloc.add(SetView('words', currentLetter, ''));
-              }
-
-              return RaisedButton(
+      return Semantics(
+          child: Container(
+              margin: EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 64.0),
+              height: 64.0,
+              child: RaisedButton(
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8.0),
-                ),
-                onPressed: () {
-                  closeCard(state.letter);
-                },
-                color: widget.getColor(widget.word.name[0]),
-                elevation: 2.0,
+                    borderRadius: BorderRadius.circular(8.0)),
+                onPressed: _launchURL,
+                color: Colors.white,
+                elevation: 8.0,
                 child: Container(
                     padding: EdgeInsets.fromLTRB(0.0, 8.0, 0.0, 8.0),
-                    child: Column(
-                        children: [cardTop, cardDefinition, cardQuestion])),
-              );
-            }
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        Expanded(
+                            child: AutoSizeText(
+                          'SUGGEST A WORD',
+                          style: TextStyle(
+                              fontSize: 18.0,
+                              letterSpacing: -1.25,
+                              fontWeight: FontWeight.bold),
+                          textAlign: TextAlign.center,
+                        )),
+                      ],
+                    )),
+              )));
+    }
 
-            void openCard(String currentLetter, String word) {
-              final HomeBloc homeBloc = BlocProvider.of<HomeBloc>(context);
-              homeBloc.add(SetView('words', currentLetter, word));
-            }
+    // margin: EdgeInsets.fromLTRB(16.0, 4.0, 16.0, 4.0)
 
-            return RaisedButton(
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8.0)),
-              onPressed: () {
-                openCard(state.letter, widget.word.name);
-              },
-              color: widget.getColor(widget.word.name[0]),
-              elevation: 2.0,
-              child: Container(
-                  padding: EdgeInsets.fromLTRB(0.0, 8.0, 0.0, 8.0),
-                  child: cardTop),
-            );
+    return BlocBuilder<HomeBloc, HomeState>(builder: (context, state) {
+      if (state is HomeWords) {
+        if (state.word == widget.word.name) {
+          void closeCard(String currentLetter) {
+            final HomeBloc homeBloc = BlocProvider.of<HomeBloc>(context);
+            homeBloc.add(SetView('words', currentLetter, ''));
           }
-        }));
+
+          return Semantics(
+              selected: true,
+              child: Container(
+                  margin: EdgeInsets.fromLTRB(16.0, 4.0, 16.0, 4.0),
+                  child: RaisedButton(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8.0),
+                    ),
+                    onPressed: () {
+                      closeCard(state.letter);
+                    },
+                    color: widget.getColor(widget.word.name[0]),
+                    elevation: 2.0,
+                    child: Container(
+                        padding: EdgeInsets.fromLTRB(0.0, 8.0, 0.0, 8.0),
+                        child: Column(
+                            children: [cardTop, cardDefinition, cardQuestion])),
+                  )));
+        }
+
+        void openCard(String currentLetter, String word) {
+          final HomeBloc homeBloc = BlocProvider.of<HomeBloc>(context);
+          homeBloc.add(SetView('words', currentLetter, word));
+        }
+
+        return Semantics(
+            selected: false,
+            child: Container(
+                margin: EdgeInsets.fromLTRB(16.0, 4.0, 16.0, 4.0),
+                child: RaisedButton(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8.0)),
+                  onPressed: () {
+                    openCard(state.letter, widget.word.name);
+                  },
+                  color: widget.getColor(widget.word.name[0]),
+                  elevation: 2.0,
+                  child: Container(
+                      padding: EdgeInsets.fromLTRB(0.0, 8.0, 0.0, 8.0),
+                      child: cardTop),
+                )));
+      }
+    });
   }
 }
