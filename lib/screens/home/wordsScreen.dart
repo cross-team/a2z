@@ -99,10 +99,12 @@ class _WordsScreenState extends State<WordsScreen> {
 
     return GestureDetector(
         onHorizontalDragEnd: swipe,
-        child: Column(
-          children: [Logo(), fadeContainer],
-          mainAxisAlignment: MainAxisAlignment.start,
-          mainAxisSize: MainAxisSize.max,
-        ));
+        child: Container(
+            padding: EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 0.0),
+            child: Column(
+              children: [Logo(), fadeContainer],
+              mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisSize: MainAxisSize.max,
+            )));
   }
 }

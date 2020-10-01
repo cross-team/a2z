@@ -17,7 +17,7 @@ class Letter extends StatelessWidget {
     return RawMaterialButton(
       onPressed: _onItemPressed,
       elevation: 2.0,
-      fillColor: getColor(letter, true),
+      fillColor: getColor(letter),
       splashColor: getColor(letter),
       child: Text(
         letter,

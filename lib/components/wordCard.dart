@@ -66,7 +66,7 @@ class _WordCardState extends State<WordCard> {
               style: TextStyle(
                   color: Colors.white,
                   fontFamily: 'Roboto Slab',
-                  fontSize: 16.0,
+                  fontSize: 18.0,
                   fontWeight: FontWeight.bold))
         ];
       }
@@ -84,7 +84,7 @@ class _WordCardState extends State<WordCard> {
             style: TextStyle(
                 color: Colors.white,
                 fontFamily: 'Roboto Slab',
-                fontSize: 16.0,
+                fontSize: 18.0,
                 fontWeight: FontWeight.bold)));
         if (splitQuestions[splitQuestions.length - 1] != element) {
           questionList.add(Container(

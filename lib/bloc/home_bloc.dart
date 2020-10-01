@@ -7,7 +7,7 @@ part 'home_state.dart';
 
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
   @override
-  HomeBloc() : super(HomeLetters());
+  HomeBloc() : super(HomeWords('all', ''));
 
   static const List<String> alphabet = [
     'a',
