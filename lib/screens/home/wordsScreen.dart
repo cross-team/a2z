@@ -5,6 +5,7 @@ import 'package:a2z/components/wordCard.dart';
 import 'package:a2z/models/word.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:scroll_to_index/scroll_to_index.dart';
 
 class WordsScreen extends StatefulWidget {
   final String letter;
@@ -17,6 +18,15 @@ class WordsScreen extends StatefulWidget {
 
 class _WordsScreenState extends State<WordsScreen> {
   List data;
+  final controller = AutoScrollController(
+    axis: Axis.vertical,
+  );
+
+  void scrollToNext(int index, int count) {
+    if (index != count - 1) {
+      controller.scrollToIndex(index + 1);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,17 +39,35 @@ class _WordsScreenState extends State<WordsScreen> {
           if (widget.letter == 'all') {
             if (newData != null) {
               return ListView.builder(
+                  controller: controller,
                   scrollDirection: Axis.vertical,
                   shrinkWrap: true,
                   itemCount: newData.length + 1,
                   itemBuilder: (BuildContext context, int index) {
                     if (newData.length == index) {
                       Word addWord = Word('add', '', '', '');
-                      return WordCard(word: addWord, getColor: widget.getColor);
+                      return AutoScrollTag(
+                          key: ValueKey(index),
+                          index: index,
+                          controller: controller,
+                          child: WordCard(
+                            word: addWord,
+                            getColor: widget.getColor,
+                            scrollToNext: () =>
+                                {scrollToNext(index, newData.length + 1)},
+                          ));
                     }
 
                     Word wordModel = Word.fromJson(newData[index]);
-                    return WordCard(word: wordModel, getColor: widget.getColor);
+                    return AutoScrollTag(
+                        key: ValueKey(index),
+                        index: index,
+                        controller: controller,
+                        child: WordCard(
+                            word: wordModel,
+                            getColor: widget.getColor,
+                            scrollToNext: () =>
+                                {scrollToNext(index, newData.length + 1)}));
                   });
             }
           } else {
@@ -48,21 +76,39 @@ class _WordsScreenState extends State<WordsScreen> {
 
             if (screenData != null) {
               return ListView.builder(
+                  controller: controller,
                   scrollDirection: Axis.vertical,
                   shrinkWrap: true,
                   itemCount: screenData.length + 1,
                   itemBuilder: (BuildContext context, int index) {
                     if (screenData.length == index) {
                       Word addWord = Word('add', '', '', '');
-                      return WordCard(word: addWord, getColor: widget.getColor);
+                      return AutoScrollTag(
+                          key: ValueKey(index),
+                          index: index,
+                          controller: controller,
+                          child: WordCard(
+                              word: addWord,
+                              getColor: widget.getColor,
+                              scrollToNext: () => {
+                                    scrollToNext(index, screenData.length + 1)
+                                  }));
                     }
 
                     if (screenData.elementAt(index)['name'][0] ==
                         widget.letter.toUpperCase()) {
                       Word wordModel =
                           Word.fromJson(screenData.elementAt(index));
-                      return WordCard(
-                          word: wordModel, getColor: widget.getColor);
+                      return AutoScrollTag(
+                          key: ValueKey(index),
+                          index: index,
+                          controller: controller,
+                          child: WordCard(
+                              word: wordModel,
+                              getColor: widget.getColor,
+                              scrollToNext: () => {
+                                    scrollToNext(index, screenData.length + 1)
+                                  }));
                     }
                   });
             }
