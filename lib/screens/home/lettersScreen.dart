@@ -57,40 +57,45 @@ class LettersScreen extends StatelessWidget {
     List<Widget> row5 = [Letter(letter: 'z', getColor: getColor)];
 
     List<Widget> rows = [
-      Logo(),
-      Row(
-        children: row0,
-        mainAxisSize: MainAxisSize.max,
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      ),
-      Row(
-        children: row1,
-        mainAxisSize: MainAxisSize.max,
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      ),
-      Row(
-        children: row2,
-        mainAxisSize: MainAxisSize.max,
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      ),
-      Row(
-        children: row3,
-        mainAxisSize: MainAxisSize.max,
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      ),
-      Row(
-        children: row4,
-        mainAxisSize: MainAxisSize.max,
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      ),
-      Row(
-        children: row5,
-        mainAxisSize: MainAxisSize.max,
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      ),
       Container(
-        constraints: BoxConstraints(minHeight: 24),
-      )
+          padding: EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 0.0), child: Logo()),
+      Expanded(
+          child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisSize: MainAxisSize.max,
+        children: [
+          Row(
+            children: row0,
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.center,
+          ),
+          Row(
+            children: row1,
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.center,
+          ),
+          Row(
+            children: row2,
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.center,
+          ),
+          Row(
+            children: row3,
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.center,
+          ),
+          Row(
+            children: row4,
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.center,
+          ),
+          Row(
+            children: row5,
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.center,
+          ),
+        ],
+      )),
     ];
 
     return rows;
@@ -98,12 +103,9 @@ class LettersScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        padding: EdgeInsets.all(16.0),
-        child: Column(
-          children: getLetters(),
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          mainAxisSize: MainAxisSize.max,
-        ));
+    return Column(
+      children: getLetters(),
+      mainAxisSize: MainAxisSize.max,
+    );
   }
 }
