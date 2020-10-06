@@ -8,11 +8,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class WordCard extends StatefulWidget {
   final Word word;
   final Function getColor;
-  final Function scrollToNext;
-  WordCard(
-      {@required this.word,
-      @required this.getColor,
-      @required this.scrollToNext});
+  WordCard({
+    @required this.word,
+    @required this.getColor,
+  });
 
   @override
   _WordCardState createState() => _WordCardState();

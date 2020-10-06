@@ -5,7 +5,6 @@ import 'package:a2z/components/wordCard.dart';
 import 'package:a2z/models/word.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:scroll_to_index/scroll_to_index.dart';
 
 class WordsScreen extends StatefulWidget {
   final String letter;
@@ -18,15 +17,6 @@ class WordsScreen extends StatefulWidget {
 
 class _WordsScreenState extends State<WordsScreen> {
   List data;
-  final controller = AutoScrollController(
-    axis: Axis.vertical,
-  );
-
-  void scrollToNext(int index, int count) {
-    if (index != count - 1) {
-      controller.scrollToIndex(index + 1);
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,80 +27,54 @@ class _WordsScreenState extends State<WordsScreen> {
           List newData = json.decode(snapshot.data.toString());
 
           if (widget.letter == 'all') {
-            if (newData != null) {
-              return ListView.builder(
-                  controller: controller,
-                  scrollDirection: Axis.vertical,
-                  shrinkWrap: true,
-                  itemCount: newData.length + 1,
-                  itemBuilder: (BuildContext context, int index) {
-                    if (newData.length == index) {
-                      Word addWord = Word('add', '', '', '');
-                      return AutoScrollTag(
-                          key: ValueKey(index),
-                          index: index,
-                          controller: controller,
-                          child: WordCard(
-                            word: addWord,
-                            getColor: widget.getColor,
-                            scrollToNext: () =>
-                                {scrollToNext(index, newData.length + 1)},
-                          ));
-                    }
+            List<Widget> allCardsList = [];
 
-                    Word wordModel = Word.fromJson(newData[index]);
-                    return AutoScrollTag(
-                        key: ValueKey(index),
-                        index: index,
-                        controller: controller,
-                        child: WordCard(
-                            word: wordModel,
-                            getColor: widget.getColor,
-                            scrollToNext: () =>
-                                {scrollToNext(index, newData.length + 1)}));
-                  });
+            for (var i = 0; i < newData.length + 1; i++) {
+              if (newData.length == i) {
+                Word addWord = Word('add', '', '', '');
+                allCardsList
+                    .add(WordCard(word: addWord, getColor: widget.getColor));
+              } else {
+                Word wordModel = Word.fromJson(newData[i]);
+                allCardsList
+                    .add(WordCard(word: wordModel, getColor: widget.getColor));
+              }
+            }
+
+            if (newData != null) {
+              return SingleChildScrollView(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: allCardsList,
+                ),
+              );
             }
           } else {
             var screenData = newData.where(
                 (element) => element['name'][0] == widget.letter.toUpperCase());
 
-            if (screenData != null) {
-              return ListView.builder(
-                  controller: controller,
-                  scrollDirection: Axis.vertical,
-                  shrinkWrap: true,
-                  itemCount: screenData.length + 1,
-                  itemBuilder: (BuildContext context, int index) {
-                    if (screenData.length == index) {
-                      Word addWord = Word('add', '', '', '');
-                      return AutoScrollTag(
-                          key: ValueKey(index),
-                          index: index,
-                          controller: controller,
-                          child: WordCard(
-                              word: addWord,
-                              getColor: widget.getColor,
-                              scrollToNext: () => {
-                                    scrollToNext(index, screenData.length + 1)
-                                  }));
-                    }
+            List<Widget> cardsList = [];
 
-                    if (screenData.elementAt(index)['name'][0] ==
-                        widget.letter.toUpperCase()) {
-                      Word wordModel =
-                          Word.fromJson(screenData.elementAt(index));
-                      return AutoScrollTag(
-                          key: ValueKey(index),
-                          index: index,
-                          controller: controller,
-                          child: WordCard(
-                              word: wordModel,
-                              getColor: widget.getColor,
-                              scrollToNext: () => {
-                                    scrollToNext(index, screenData.length + 1)
-                                  }));
-                    }
-                  });
+            for (var i = 0; i < screenData.length + 1; i++) {
+              if (screenData.length == i) {
+                Word addWord = Word('add', '', '', '');
+                cardsList
+                    .add(WordCard(word: addWord, getColor: widget.getColor));
+              } else if (screenData.elementAt(i)['name'][0] ==
+                  widget.letter.toUpperCase()) {
+                Word wordModel = Word.fromJson(screenData.elementAt(i));
+                cardsList
+                    .add(WordCard(word: wordModel, getColor: widget.getColor));
+              }
+            }
+
+            if (screenData != null) {
+              return SingleChildScrollView(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: cardsList,
+                ),
+              );
             }
           }
 
