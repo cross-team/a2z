@@ -2,6 +2,7 @@ import 'package:a2z/bloc/home_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:a2z/screens/addWord/addWordScreen.dart';
 import 'package:a2z/screens/home/homeScreen.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main() {
@@ -24,6 +25,9 @@ class MyApp extends StatelessWidget {
       800: Color.fromRGBO(0, 214, 66, .9),
       900: Color.fromRGBO(0, 214, 66, 1),
     };
+
+    SystemChrome.setPreferredOrientations(
+        [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
 
     return MaterialApp(
       title: 'Flutter Demo',
